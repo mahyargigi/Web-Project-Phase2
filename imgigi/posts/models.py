@@ -8,21 +8,21 @@ from datetime import datetime
 
 
 class Post(models.Model):
-    user = models.ForeignKey(model=UserProfile)
-    movie = models.ForeignKey(model=Movie)
+    user = models.ForeignKey(UserProfile)
+    movie = models.ForeignKey(Movie)
     rate = models.IntegerField()
     description = models.CharField(max_length=10000)
     date = models.DateTimeField(default=datetime.now())
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(model=UserProfile)
-    post = models.ForeignKey(model=Post)
+    user = models.ForeignKey(UserProfile)
+    post = models.ForeignKey(Post)
     description = models.CharField(max_length=1000)
     date = models.DateTimeField(default=datetime.now())
 
 
 class Like(models.Model):
-    user = models.ForeignKey(model=UserProfile)
-    post = models.ForeignKey(model=Post)
+    user = models.ForeignKey(UserProfile)
+    post = models.ForeignKey(Post)
     date = models.DateTimeField(default=datetime.now())

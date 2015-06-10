@@ -18,8 +18,8 @@ class Artist(models.Model):
 
 
 class Role(models.Model):
-    movie = models.ForeignKey(model=Movie)
-    artist = models.ForeignKey(model=Artist)
+    movie = models.ForeignKey(Movie)
+    artist = models.ForeignKey(Artist)
     ROLE_CHOICES = (
         ('dir', 'Director'),
         ('crt', 'Creator/Writer'),
@@ -28,7 +28,3 @@ class Role(models.Model):
     role = models.CharField(choices=ROLE_CHOICES, max_length=3)
     # for Actors and Casts:
     description = models.CharField(max_length=1000, null=True, blank=True)
-
-
-    # class Genre(models.Model):
-    # pass

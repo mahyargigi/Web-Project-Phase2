@@ -9,4 +9,4 @@ class UserProfile(models.Model):
     display_name = models.CharField(max_length=100, null=False, blank=False)
     birthday = models.DateField(null=False, blank=False)
     profile_picture = models.ImageField()
-    follows = models.ManyToManyField('self', related_name='follows', symmetrical=False)
+    follows = models.ManyToManyField('self', related_name='followers', symmetrical=False)
