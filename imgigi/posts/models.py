@@ -26,3 +26,7 @@ class Like(models.Model):
     user = models.ForeignKey(UserProfile)
     post = models.ForeignKey(Post)
     date = models.DateTimeField(default=datetime.now())
+
+
+class Notification(models.Model):
+    pass
