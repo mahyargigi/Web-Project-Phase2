@@ -1,0 +1,17 @@
+li {
+    /*float: left;*/
+    position: relative;
+    left: -30px;
+    /*text-outline: dasti oomadam dadam age mikhay avazesh kon;*/
+    /*TODO: dasti oomadam dadam age mikhay avazesh kon*/
+
+}
+
+aside {
+    float: right;
+    /*width: 350px;*/
+    /*margin-right: 10px;*/
+}
+.suggested-films{
+    margin-top: 10px;
+}
