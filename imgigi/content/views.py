@@ -8,7 +8,7 @@ def movie_profile(request, movie_id):
     #try :
     movie = Movie.objects.get(id=movie_id)
     role = Role.objects.filter(movie=movie)
-    return render(request,'movie-profile.html',{'movie':movie , 'role':role})
+    return render(request,'movie-profile.html',{'movie':movie , 'roles':role})
 
     #except:
     #    return HttpResponse('not found')

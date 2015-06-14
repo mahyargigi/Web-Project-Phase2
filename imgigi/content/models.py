@@ -10,7 +10,7 @@ class Movie(models.Model):
     imdb_link = models.URLField()
     release_date = models.DateField()
     rating = models.DecimalField(max_digits=2 , decimal_places=1,default=0)  # aggregate this! or change on every post!
-    movie_cover = models.ImageField()
+    movie_cover = models.ImageField(upload_to='movie-covers')
 
     def __str__(self):
         return self.title

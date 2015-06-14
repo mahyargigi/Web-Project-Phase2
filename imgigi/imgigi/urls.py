@@ -2,6 +2,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.http import HttpResponse
 from content.views import movie_profile
+from django.conf import settings
+from django.conf.urls.static import static
+
 def temp_view(request, user_id):
     id = user_id
     return HttpResponse("id = " + id)
@@ -22,4 +25,4 @@ urlpatterns = [
     url(r'posts/(?:(?P<post_id>\d+)/)?$', temp_view),
     url(r'^search/', temp_view),
 
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
