@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from content.models import Artist, Movie, Role
+from random import randint
+import random
 # Create your views here.
 
 def movie_profile(request, movie_id):
@@ -13,5 +15,11 @@ def movie_profile(request, movie_id):
     #except:
     #    return HttpResponse('not found')
 
+def test(request):
+    movie_list = random.sample(range(0,Movie.objects.count()),2)
+    movies = []
+    movies.append(Movie.objects.all()[movie_list[0]])
+    movies.append(Movie.objects.all()[movie_list[1]])
+    return render(request , 'suggested-films.html' , {'movies':movies})
 
 
