@@ -78,14 +78,14 @@ $(document).ready(function(){
            }
            test();
     });
-    $('#id_username').keyup(function(){
-       if($('#id_username').val().length > 0){
-           $('#id_username').parent().parent().addClass('has-success');
-           $('#id_username').parent().parent().removeClass('has-error');
+    $('#inputUsername').keyup(function(){
+       if($('#inputUsername').val().length > 0){
+           $('#inputUsername').parent().parent().addClass('has-success');
+           $('#inputUsername').parent().parent().removeClass('has-error');
        }
         else{
-           $('#id_username').parent().parent().addClass('has-error');
-           $('#id_username').parent().parent().removeClass('has-success');
+           $('#inputUsername').parent().parent().addClass('has-error');
+           $('#inputUsername').parent().parent().removeClass('has-success');
        }
         test();
     });
