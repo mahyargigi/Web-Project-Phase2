@@ -8,5 +8,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='user')
     display_name = models.CharField(max_length=100, null=False, blank=False)
     birthday = models.DateField(null=False, blank=False)
-    profile_picture = models.ImageField()
-    follows = models.ManyToManyField('self', related_name='followers', symmetrical=False)
+    profile_picture = models.ImageField(upload_to='static/profile_images')
+    follows = models.ManyToManyField('self', related_name='followers', symmetrical=False, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username + " " + self.display_name
