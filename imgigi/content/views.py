@@ -15,7 +15,7 @@ def movie_profile(request, movie_id):
     #except:
     #    return HttpResponse('not found')
 
-def test(request):
+def suggested_films(request):
     movie_list = random.sample(range(0,Movie.objects.count()),2)
     movies = []
     movies.append(Movie.objects.all()[movie_list[0]])

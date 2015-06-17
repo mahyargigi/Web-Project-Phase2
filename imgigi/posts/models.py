@@ -17,7 +17,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(UserProfile)
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey(Post, related_name="comments")
     description = models.CharField(max_length=1000)
     date = models.DateTimeField(default=timezone.now())
 

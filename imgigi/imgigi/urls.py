@@ -1,7 +1,8 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.http import HttpResponse
-from content.views import movie_profile , test
+from content.views import movie_profile , suggested_films
+from posts.views import post
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -22,8 +23,8 @@ urlpatterns = [
     url(r'^/', temp_view),
     url(r'users/(?:(?P<user_id>\d+)/)?$', temp_view),
     url(r'movies/(?:(?P<movie_id>\d+)/)?$', movie_profile),
-    url(r'posts/(?:(?P<post_id>\d+)/)?$', temp_view),
+    url(r'posts/(?:(?P<post_id>\d+)/)?$', post),
     url(r'^search/', temp_view),
-    url(r'^test/', test),
+    url(r'^test/', suggested_films),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
