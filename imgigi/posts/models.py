@@ -8,11 +8,14 @@ from django.utils import timezone
 
 
 class Post(models.Model):
-    user = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile , related_name="posts")
     movie = models.ForeignKey(Movie)
     rate = models.IntegerField()
     description = models.CharField(max_length=10000)
     date = models.DateTimeField(default=timezone.now())
+    def __str__(self):
+        name = str(self.movie) + "--" + str(self.user)
+        return name
 
 
 class Comment(models.Model):
