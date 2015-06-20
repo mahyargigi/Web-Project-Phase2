@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Post
+from django.http import HttpResponse
 from accounts.models import UserProfile
+from json import dump
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def post(request , post_id):
     post = Post.objects.get(id=post_id)
@@ -23,3 +26,9 @@ def timeline(request):
     #posts.order_by('date')
     return render(request,'timeline.html', {'posts': posts})
     #pass
+@csrf_exempt
+def post_comment(request):
+    if request.method=='Post':
+        response = {}
+        return HttpResponse(dump(response), content_type="application/json");
+    return HttpResponse('');

@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 from content.views import movie_profile , suggested_films
 from posts.views import timeline
-from posts.views import post
+from posts.views import post,post_comment
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^search/', temp_view),
     url(r'^test/', suggested_films),
     url(r'^$', timeline),
+    url(r'^post-comment', post_comment),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
