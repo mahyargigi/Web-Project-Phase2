@@ -24,11 +24,19 @@ class Comment(models.Model):
     description = models.CharField(max_length=1000)
     date = models.DateTimeField(default=timezone.now())
 
+    def __str__(self):
+        comment = str(self.user)+" said:" + str(self.description[0:10])
+        return (comment)
+
 
 class Like(models.Model):
     user = models.ForeignKey(UserProfile)
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey(Post, related_name="likes")
     date = models.DateTimeField(default=timezone.now())
+
+    def __str__(self):
+        like = str(self.user)+" liked "+str(self.post.movie)
+        return like
 
 
 class Notification(models.Model):
