@@ -1,13 +1,4 @@
-{% extends "base.html" %}
-<!--{% include "suggested-films.html" %}-->
-{% block title %}timeline{% endblock %}
-{% block navigationbar %}
-{% include 'navigation-bar.html' %}
-{% endblock %}
-{%block center %}
-{%load staticfiles %}
-<div id="center" class="col-md-6">
-    {% for post in posts %}
+{% for post in posts %}
     <div class="well " id="post-{{post.id}}">
         <div class="row">
             <div class="col-md-5">
@@ -50,7 +41,6 @@
             <div class="card-content">
                 <div class="card-image">
                     <img src="{{post.movie.movie_cover.url}}" class="shadow-z-1" alt="Loading image...">
-
                     <h3 class="card-image-headline">{{ post.movie.title }}</h3>
                 </div>
                 <div class="card-body">
@@ -124,60 +114,4 @@
         </div>
 
     </div>
-    {% endfor %}
-
-
-</div>
-        <div id="lastPostLoader" data-index="0"></div>
-{% endblock %}
-{% block js %}
-<script src="{% static 'js/post-comment.js' %}"></script>
-<script src="{% static 'js/like.js' %}"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var page_index = parseInt($("#lastPostLoader").attr('data-index'));
-        function lastAddedLiveFunc() {
-            var lastPostLoad = $('#lastPostsLoader');
-            $('div#lastPostsLoader').html('<img src="bigLoader.gif"/>');
-//            console.log($("#lastPostLoader").attr('data-index'));
-            page_index = page_index+1;
-            console.log("inja"+page_index);
-
-            $.ajax({
-                url: '/timeline/' + page_index + '/',
-                type: "POST",
-                data: [],
-                success: function (result) {
-                    if (result != "") {
-                        //console.log('add data..');
-//                        console.log(result);
-                        $("#center").append(result);
-                        $(document).trigger('ready');
-                        $('#center .rating').rating();
-                    }
-
-                    $('div#lastPostsLoader').empty();
-//                    $('div#lastPostsLoader').attr('data-index', page_index);
-                    console.log("oonja"+page_index);
-
-                }
-            });
-
-
-        };
-
-        //lastAddedLiveFunc();
-        $(window).scroll(function () {
-
-            var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
-            var scrolltrigger = 0.95;
-
-            if ((wintop / (docheight - winheight)) > scrolltrigger) {
-                //console.log('scroll bottom');
-                lastAddedLiveFunc();
-
-            }
-        });
-    });
-</script>
-{% endblock %}
+{% endfor %}

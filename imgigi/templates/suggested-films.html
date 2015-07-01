@@ -1,13 +1,13 @@
-{% extends "sidebar.html" %}
 {% block suggested-films %}
-           <div class="suggested-films col-md-12">
+    <div class="row">
+          <div class="suggested-films col-md-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Suggested films:</h3>
                     </div>
                     <div class="panel-body">
                         <ul style="text-align: left">
-                            {% for movie in movies %}
+                            {% for movie in suggested_movies %}
                                 <a href="/movies/{{movie.id}}">
                                     <li>
                                         <div class="list-group">
@@ -21,8 +21,8 @@
                                             </div>
                                             <div class="list-group-item">
                                                 <input id="#" class="rating" data-stars="5" data-min="0"
-                                                   data-max="5" data-step="0.1" data-show-clear="false" data-size="xs"
-                                                   data-readonly="true" data-symbol="&#x2605">
+                                                   data-max="10" data-step="0.1" data-show-clear="false" data-size="xs"
+                                                   data-readonly="true" data-symbol="&#x2605" value="{{movie.rating}}">
                                                 <!--id bayad chi bezarim?-->
                                             </div>
                                             <div class="list-group-separator"></div>
@@ -33,5 +33,6 @@
                         </ul>
                     </div>
                 </div>
-           </div>
+          </div>
+    </div>
 {% endblock %}

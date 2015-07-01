@@ -14,6 +14,17 @@ $(document).ready(function () {
             .addClass('follow');
         $element.click(function () {
             clicked($(this));
+            var element_id = $(this).attr('identifier').split('-').pop();
+            data = {'id':element_id , 'action':"follow"};
+            $.ajax({
+                url: '/follow-unfollow',
+                type: 'POST',
+                data: data,
+                success:function(result){
+                    console.log(result);
+                }
+
+            });
         });
     }
 
@@ -36,19 +47,19 @@ $(document).ready(function () {
             });
         $element.click(function () {
             notClicked($(this));
+            var element_id = $(this).attr('identifier').split('-').pop();
+            data = {'id':element_id , 'action':"unfollow"};
+            $.ajax({
+                url: '/follow-unfollow',
+                type: 'POST',
+                data: data,
+                success:function(result){
+                    console.log(result);
+                }
+
+            });
         })
     }
 
-//    $('.btn-danger').hover(function(){
-//
-//    });
-//
-//    $('.btn-danger').click(function(){
-//       $(this).removeClass('btn-danger');
-//       $(this).addClass('btn-info');
-//       $(this).text("follow");
-//       $(this).removeClass('following');
-//       $(this).addClass('follow');
-//    });
 
 });

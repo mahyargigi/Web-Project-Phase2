@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'posts',
     'content',
     'captcha',
+    'notifications',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,12 +122,6 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 #STATIC_ROOT = 'static'
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
-
 STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
 

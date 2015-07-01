@@ -14,10 +14,15 @@
 </head>
 <body>
     {% block navigationbar %} {% endblock %}
+    {% block user-settings %} {% endblock %}
     <div class="row">
-        {% block left %} {% endblock %}
+        {% block left %}
+            {% include "left.html" %}
+        {% endblock %}
         {% block center %} {% endblock %}
-        {% block right %} {% endblock %}
+        {% block right %}
+            {% include "sidebar.html" %}
+        {% endblock %}
     </div>
     <script src="{% static 'js/jquery-1.11.2.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -31,6 +36,9 @@
     <script src="{% static 'js/sidebar.js' %}"></script>
     <script src="{% static 'js/follow-unfollow.js' %}"></script>
     <script src="{% static 'js/toolbar.js' %}"></script>
+    <script src="{% static 'js/notifications-read.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+
     <!--oon jse marboot be suggested films ro ezafe nakardam!-->
     {% block js %} {% endblock %}
 

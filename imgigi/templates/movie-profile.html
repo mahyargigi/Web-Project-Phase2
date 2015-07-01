@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Movie-profile {% endblock %}
+{%block navigationbar %}
+    {% include 'navigation-bar.html' %}
+{% endblock %}
 {% block center %}
 
 {% load staticfiles %}
@@ -39,6 +42,8 @@
                                     <img src="{{movie.movie_cover.url}}" class="shadow-z-1" alt="Loading image...">
 
                                     <h3 class="card-image-headline">{{ movie.title }}</h3>
+                                    <p hidden="true" id="hidden-movie-rate">{{movie.rating}}</p>
+                                    <p hidden="true" id="hidden-movie-id">{{movie.id}}</p>
                                 </div>
                                 <div class="card-body">
                                     <!--<div class="">-->
@@ -68,7 +73,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close
                         </button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-post">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -160,4 +165,44 @@
         </div>
         </div>
     </div>
+{% endblock %}
+{% block right %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+{% block js %}
+    <script>
+    $(document).ready(function () {
+        // This command is used to initialize some elements and make them work properly
+        $.material.init();
+        var movie_rate = $('#hidden-movie-rate').html();
+//        var user_rate = $('rate-it').val();
+//        $('.rating-stars').on('click',function(){
+//            var user_rate = $('.rating-stars').innerHTML;
+//            console.log("user rated:"+user_rate);
+//        });
+        $('#movie-rate').rating('update', movie_rate);
+        $('#rate-it').on('rating.change', function (event, value, caption) {
+
+            console.log(value);
+//            console.log(caption);
+            $('#short-movie-rate').rating('update', value);
+            $("#rate-modal").modal("show");
+        });
+        $('#submit-post').on('click',function(){
+           user_rate = $('#short-movie-rate').val();
+           user_description = $('#focusedInput').val();
+           movie_id = $('#hidden-movie-id').html();
+            console.log(user_description);
+            $.ajax({
+               url: '/add-post/',
+               type: 'POST',
+               data:{'user_rate':user_rate , 'user_description':user_description , 'movie_id':movie_id},
+                success:function(result){
+                    $('#movie-rate').rating('update',result);
+                }
+            });
+        });
+
+    });
+    </script>
 {% endblock %}

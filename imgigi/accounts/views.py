@@ -2,13 +2,51 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from django.shortcuts import render
 from accounts.forms import UserProfileForm, UserForm, LoginForm, UserProfileEditForm, UserEditForm
-from accounts.models import UserProfile
 from django.http.response import HttpResponseRedirect, HttpResponse
-from django.views.generic.edit import UpdateView
-from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from .models import UserProfile
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from notifications import notify
+from content.views import suggested_users , suggested_films
 # Create your views here.
+
+@login_required
+def user_profile(request , user_id=None):
+    yours , follows = False , False
+    if not user_id:
+        yours = True
+        user = request.user.user
+    else:
+        user = UserProfile.objects.get(id=user_id)
+        if user in request.user.user.follows.all():
+            follows = True
+    suggestedFilms = suggested_films(request)
+    suggestedUsers = suggested_users(request)
+    return render(request , 'user-profile-yours.html' , {'target_user':user , 'yours':yours , 'follows':follows ,'suggested_movies':suggestedFilms , 'suggested_users':suggestedUsers})
+
+
+@login_required
+@csrf_exempt
+def follow_unfollow(request):
+    subject_user = request.user.user
+    print("1")
+    object_user = UserProfile.objects.get(id = request.POST.get('id'))
+    print("2")
+    action = ""
+    print("3")
+    if request.POST.get('action') == 'follow':
+        action = "follow"
+    elif request.POST.get('action') == 'unfollow':
+        action = "unfollow"
+    if action == "follow":
+        if not object_user in subject_user.follows.all():
+            subject_user.follows.add(object_user)
+            notify.send(request.user, recipient=object_user.user , verb=str(request.user)+" followed you")
+    elif action == "unfollow":
+        if object_user in subject_user.follows.all():
+            subject_user.follows.remove(object_user)
+    return HttpResponse('done!')
 
 
 def signup(request):
@@ -54,7 +92,7 @@ def login(request):
                 if user.is_active:
                     auth.login(request, user)
                     print("OK")
-                    return HttpResponseRedirect("/signup/")
+                    return HttpResponseRedirect("/")
                     # return redirected page
                 else:
                     return HttpResponse('disabled account')
@@ -87,7 +125,7 @@ def edit_user_profile(request):
             instance.user = up
             instance.save()
             instance.user.save()
-            return HttpResponseRedirect('/login/')
+            return HttpResponseRedirect('/users/'+str(request.user.user.id))
 
     else:
         print("not post", request.GET)
