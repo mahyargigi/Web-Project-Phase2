@@ -1,0 +1,37 @@
+{% extends "sidebar.html" %}
+{% block suggested-films %}
+           <div class="suggested-films col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Suggested films:</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul style="text-align: left">
+                            {% for movie in movies %}
+                                <a href="/movies/{{movie.id}}">
+                                    <li>
+                                        <div class="list-group">
+                                            <div class="list-group-item">
+                                                <div class="row-picture">
+                                                    <img class="circle" src="{{movie.movie_cover.url}}" alt="icon">
+                                                </div>
+                                                <div class="row-content">
+                                                    <h4 class="list-group-item-heading">{{movie.title}}</h4>
+                                                </div>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <input id="#" class="rating" data-stars="5" data-min="0"
+                                                   data-max="5" data-step="0.1" data-show-clear="false" data-size="xs"
+                                                   data-readonly="true" data-symbol="&#x2605">
+                                                <!--id bayad chi bezarim?-->
+                                            </div>
+                                            <div class="list-group-separator"></div>
+                                        </div>
+                                    </li>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+           </div>
+{% endblock %}

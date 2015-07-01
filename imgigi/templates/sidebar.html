@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block right %}
+<div class="col-md-3">
+    <aside class="sidebar col-md-12">
+        {% block suggested-films %} {% endblock %}
+        {% block suggested-users %} {% endblock %}
+    </aside>
+</div>
+{% endblock %}

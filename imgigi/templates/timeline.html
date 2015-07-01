@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+<!--{% include "suggested-films.html" %}-->
+{% block title %}timeline{% endblock %}
+{%block center %}
+    {%load staticfiles %}
+    <div id="center" class="col-md-6">
+        {% for post in posts %}
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="{{ post.user.profile_picture.url }}" alt="icon">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading">{{ post.user.display_name }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        starred <a class='pop' data-popover="true" data-html=true
+                                   data-content="<a class='' href='movie-profile.html' target='blank' >
+                                   <a>Before Sunrise</a><hr><span>director:<a>Richard Linklater</a></span><hr>8.1</a>">{{ post.movie.title }}</a>
+                    </div>
+                    </span>
+                    <div class="col-md-3">
+                        <a href="post.html">{{ post.date }}</a>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                        {{ post.description }}
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <input id="movie-rate" class="rating" data-stars="5" data-min="0" data-max="10" data-step="1"
+                       data-show-clear="false" data-readonly="true" data-symbol="&#x2605">
+
+                <div class="card">
+
+                    <div class="card-height-indicator"></div>
+
+                    <div class="card-content">
+
+
+                        <div class="card-image">
+                            <img src="{{post.movie.movie_cover.url}}" class="shadow-z-1" alt="Loading image...">
+
+                            <h3 class="card-image-headline">{{ post.movie.title }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <!--<div class="">-->
+                            <!--<h3>Before Sunrise</h3>-->
+
+                            <!--<div class="small"><span>105 min</span></div>-->
+                            <!--<hr>-->
+                            <!--</div>-->
+
+                            <p>{{ post.movie.description }}</p>
+                        </div>
+
+                        <!--<div class="card-body">-->
+
+                        <!--</div>-->
+
+
+                        <!--<footer class="card-footer">-->
+
+                        <!--</footer>-->
+
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                        <a href="javascript:void(0)"
+                           class="btn btn-primary btn-fab btn-raised glyphicon glyphicon-heart-empty  "></a>
+
+                        <ul class="comment-list list-group">
+                            {% for comment in post.comments.all %}
+                                <li>
+                                    <div class="list-group-item">
+                                        <div class="row-picture">
+                                            <img class="circle" src="{{comment.user.profile_picture.url}}" alt="icon">
+                                        </div>
+                                        <div class="row-content">
+                                            <h4 class="list-group-item-heading">{{ comment.user.display_name }}</h4>
+                                            <p class="list-group-item-text">{{ comment.description }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-separator"></div>
+                                </li>
+                            {% endfor %}
+                            <li class="text-button" id='text-button1'>
+                                <div class="list-group-item">
+                                    <div class="form-group">
+                                        <!--<input class="form-control floating-labe" id="focusedInput" type="text" placeholder="Comment">-->
+                                <textarea class="form-control floating-label input-group-lg" id="focusedInput1"
+                                          type="text"
+                                          placeholder="Comment"></textarea>
+                                        <!--</textarea>-->
+                                    </div>
+                                    <div>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm " id="comment-btn1">Post
+                                            Comment</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

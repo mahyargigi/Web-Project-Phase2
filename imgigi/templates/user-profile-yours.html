@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="css/roboto.min.css" rel="stylesheet">
+    <link href="css/material.min.css" rel="stylesheet">
+    <link href="css/ripples.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <!--<link href="css/login.css" rel="stylesheet">-->
+    <title>User Profile-yours</title>
+
+</head>
+<body>
+<!--site starts-->
+<div class="row container" style="margin-bottom: 70px">
+    <!--TODO: aya row container mikhahad ya na?notificationha kharabash nemikonad?-->
+    <div class="col-md-12">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">IMGIGI</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <!--<li class="active"><a href="#"></a></li>-->
+                        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>User</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
+                                    class="glyphicon glyphicon-globe"></span><span class="badge">4</span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+
+                                    <a href="#"><img class="circle" src="Img/mahyar1.jpg" alt="icon"
+                                                     style="height: 50px ; width: 50px">User2 liked your post</a>
+                                    <hr>
+                                </li>
+                                <li>
+
+                                    <a href="#"><img class="circle" src="Img/mahyar1.jpg" alt="icon"
+                                                     style="height: 50px ; width: 50px">User2 commented on your
+                                        post</a>
+                                    <hr>
+                                </li>
+                                <li>
+
+                                    <a href="#"><img class="circle" src="Img/mahyar1.jpg" alt="icon"
+                                                     style="height: 50px ; width: 50px">User3 started following you</a>
+                                    <hr>
+                                </li>
+                                <li>
+
+                                    <a href="#"><img class="circle" src="Img/mahyar1.jpg" alt="icon"
+                                                     style="height: 50px ; width: 50px">User4 commented on your post</a>
+                                    <hr>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right ">
+
+                        <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-off"></span> Log out</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right ">
+                        <form class="navbar-form " role="search">
+                            <div id="search" class="input-group">
+                                <input type="text" class="typeahead form-control" hint="Search"/>
+
+                                <!--<div class="input-group-btn">-->
+                                <!--<button class="btn btn-default" type="submit">-->
+                                <!--<span class="sr-only">Search</span>-->
+                                <!--<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
+                                <!--</button>-->
+                                <!--</div>-->
+                            </div>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="thumbnail col-lg-2 col-lg-offset-1 pull-left">
+        <img src="Img/ali%20choopan.jpg" class="thumbnail">
+
+        <h2><a><span>Ali Choopan</span></a></h2>
+        <h4><a><span class="">@alicheh</span></a></h4>
+    </div>
+    <!--TODO: pull down this div-->
+    <div class="col-lg-9 pull-down">
+        <div class="col-md-8">
+        </div>
+
+        <div class="col-lg-4">
+            <!--TODO: if my profile -> Edit else if following -> Unfollow else Follow-->
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-default">
+    <div class="navbar-collapsecollapse navbar-responsive-collapse">
+        <div class="col-lg-2"></div>
+        <ul class="nav navbar-nav nav-tabs">
+            <li class="active"><a href="#posts" data-toggle="tab">Posts<span class="badge">2</span></a></li>
+            <li ><a href="#follower" data-toggle="tab">Followers <span class="badge">8</span></a></li>
+            <li><a href="#following" data-toggle="tab">Following <span class="badge">8</span></a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right " style="margin-right: 15px">
+            <!--<a href="javascript:void(0)" class="btn btn-info  follow">Follow</a>-->
+            <a href="javascript:void(0)" class="btn btn-primary btn-raised">Edit</a>
+
+        </ul>
+
+    </div>
+</div>
+<div class="row">
+    <!--had the class container-->
+    <div id="left" class="col-lg-3"></div>
+    <div id="center" class="col-lg-6">
+        <div id="myTabcontent" class="tab-content all-users">
+        <div class="tab-pane fade active in" id="posts">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="post.html">yesterday 15:20</a>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                    It was the best film i have ever seen blah blah blah
+                    It was the best film i have ever seen blah blah blah
+                    It was the best film i have ever seen blah blah blah
+                    It was the best film i have ever seen blah blah blah
+                    It was the best film i have ever seen blah blah blah
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <input id="movie1-rate" class="rating" data-stars="5" data-min="0" data-max="10" data-step="1"
+                   data-show-clear="false" data-readonly="true" data-symbol="&#x2605">
+
+            <div class="card">
+
+                <div class="card-height-indicator"></div>
+
+                <div class="card-content">
+
+
+                    <div class="card-image">
+                        <img src="Img/before-midnight.jpg" class="shadow-z-1" alt="Loading image...">
+
+                        <h3 class="card-image-headline">Before Sunrise</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <p>A young man and woman meet on a train in Europe, and wind up spending one evening
+                            together in Vienna. Unfortunately, both know that this will probably be their
+                            only night together.</p>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-fab btn-raised glyphicon glyphicon-heart-empty" style="margin:15px;"><div class="ripple-wrapper"></div></a>
+                    <ul class="comment-list list-group">
+                        <li>
+                            <!--<div class="list-group">-->
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="Img/ali%20choopan.jpg" alt="icon">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading">Ali choopan</h4>
+
+                                    <p class="list-group-item-text">This is the most ridiculous film i have ever
+                                        seen</p>
+                                </div>
+                            </div>
+                            <!--</div>-->
+                            <div class="list-group-separator"></div>
+                        </li>
+                        <li>
+                            <!--<div class="list-group">-->
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="Img/mahyar2.jpg" alt="icon">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+
+                                    <p class="list-group-item-text">This is the best film i have ever seen</p>
+                                </div>
+                            </div>
+                            <!--</div>-->
+                            <div class="list-group-separator"></div>
+                        </li>
+                        <li class="text-button">
+                            <div class="list-group-item">
+                                <div class="form-group">
+                                    <!--<input class="form-control floating-labe" id="focusedInput" type="text" placeholder="Comment">-->
+                                <textarea class="form-control floating-label input-group-lg" id="focusedInput1"
+                                          type="text"
+                                          placeholder="Comment"></textarea>
+                                    <!--</textarea>-->
+                                </div>
+                                <div>
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="comment-btn1">Post
+                                        Comment</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+        </div>
+
+        <div class="well">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="post.html">yesterday 15:20</a>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                    It was the best film i have ever seen blah blah blah
+                    It was the best film i have ever seen blah blah blah
+                    It was the best film i have ever seen blah blah blah
+                    It was the best film i have ever seen blah blah blah
+                    It was the best film i have ever seen blah blah blah
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <input id="movie2-rate" class="rating" data-stars="5" data-min="0" data-max="10" data-step="1"
+                   data-show-clear="false" data-readonly="true" data-symbol="&#x2605">
+
+            <div class="card">
+
+                <div class="card-height-indicator"></div>
+
+                <div class="card-content">
+
+
+                    <div class="card-image">
+                        <img src="Img/before-midnight.jpg" class="shadow-z-1" alt="Loading image...">
+
+                        <h3 class="card-image-headline">Before Sunrise</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <p>A young man and woman meet on a train in Europe, and wind up spending one evening
+                            together in Vienna. Unfortunately, both know that this will probably be their
+                            only night together.</p>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-fab btn-raised glyphicon glyphicon-heart-empty" style="margin:15px;"><div class="ripple-wrapper"></div></a>
+                    <ul class="comment-list list-group">
+                        <li>
+                            <!--<div class="list-group">-->
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="Img/ali%20choopan.jpg" alt="icon">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading">Ali choopan</h4>
+
+                                    <p class="list-group-item-text">This is the most ridiculous film i have ever
+                                        seen</p>
+                                </div>
+                            </div>
+                            <!--</div>-->
+                            <div class="list-group-separator"></div>
+                        </li>
+                        <li>
+                            <!--<div class="list-group">-->
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="Img/mahyar2.jpg" alt="icon">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+
+                                    <p class="list-group-item-text">This is the best film i have ever seen</p>
+                                </div>
+                            </div>
+                            <!--</div>-->
+                            <div class="list-group-separator"></div>
+                        </li>
+                        <li class="text-button">
+                            <div class="list-group-item">
+                                <div class="form-group">
+                                    <!--<input class="form-control floating-labe" id="focusedInput" type="text" placeholder="Comment">-->
+                                <textarea class="form-control floating-label input-group-lg" id="focusedInput2"
+                                          type="text"
+                                          placeholder="Comment"></textarea>
+                                    <!--</textarea>-->
+                                </div>
+                                <div>
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="comment-btn2">Post
+                                        Comment</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+            </div>
+            </div>
+        <div class="tab-pane fade" id="follower">
+                <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar2.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Saeid Safari</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-info follow">FOllow</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">Following</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar2.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Saeid Safari</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-info follow">FOllow</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">Following</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar2.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Saeid Safari</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-info follow">FOllow</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">Following</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar2.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Saeid Safari</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-info follow">FOllow</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">Following</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                        </div>
+              </div>
+              <div class="tab-pane fade" id="following">
+                        <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/ali%20choopan.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Ali Choopan</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">FOllowing</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">Following</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/ali%20choopan.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Ali Choopan</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">FOllowing</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">Following</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/ali%20choopan.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Ali Choopan</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">FOllowing</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">Following</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                      </div>
+                        <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/ali%20choopan.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Ali Choopan</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">FOllowing</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar Gigi</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-success following">Following</a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                      </div>
+
+                    </div>
+        </div>
+
+    </div>
+    <div id="right" class="col-md-3">
+        <aside class="sidebar col-md-12">
+        <div class="row">
+            <div class="suggested-films col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Suggested films:</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul style="text-align: left">
+                            <a href="#">
+                                <li>
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/tintin.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">TinTin</h4>
+
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item">
+
+
+                                            <input id="movie-rate1" class="rating" data-stars="5" data-min="0"
+                                                   data-max="5" data-step="0.1" data-show-clear="false" data-size="xs"
+                                                   data-readonly="true" data-symbol="&#x2605">
+
+                                        </div>
+
+                                        <div class="list-group-separator"></div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/harrypotter.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">HarryPotter</h4>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <input id="movie-rate2" class="rating rating-sm" data-stars="5"
+                                                       data-min="0" data-max="5" data-step="0.1" data-show-clear="false" data-size="xs  "
+                                                       data-readonly="true" data-symbol="&#x2605">
+                                        </div>
+                                                <!--<p class="list-group-item-text">Best movie ever!</p>-->
+                                        <div class="list-group-separator"></div>
+                                    </div>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="suggested-Users col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Suggested Users:</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            <a href="#">
+                                <li>
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/ali%20choopan.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Ali Choopan</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-info follow">Follow</a>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-separator"></div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="Img/mahyar1.jpg" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">Mahyar GiGi</h4>
+                                                <!--<p class="list-group-item-text">Best movie ever!</p>-->
+                                                <a href="javascript:void(0)" class="btn btn-info  follow">Follow</a>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-separator"></div>
+                                    </div>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    </div>
+</div>
+<!--site ends!-->
+<script src="js/jquery-1.11.2.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/star-rating.min.js" type="text/javascript"></script>
+<script src="js/ripples.min.js"></script>
+<script src="js/material.min.js"></script>
+<script src="js/typeahead.js"></script>
+<script src="js/typeahead.bundle.js"></script>
+<script src="js/bloodhound.js"></script>
+<script src="js/typeahead.jquery.js"></script>
+<script src="js/follow-unfollow.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/toolbar.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // This command is used to initialize some elements and make them work properly
+        $.material.init();
+        $('#movie1-rate').rating('update', 6);
+        $('#movie2-rate').rating('update', 6);
+    });
+</script>
+</body>
+</html>

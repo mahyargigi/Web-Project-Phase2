@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'accounts',
     'posts',
     'content',
+    'captcha',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -74,7 +75,7 @@ ROOT_URLCONF = 'imgigi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,6 +128,7 @@ STATICFILES_FINDERS = (
 )
 
 STATIC_URL = '/static/'
+LOGIN_URL = '/login/'
 
 #STATICFILES_DIRS = (
 #os.path.join(BASE_DIR, "static"),
