@@ -136,32 +136,39 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var page_index = parseInt($("#lastPostLoader").attr('data-index'));
+        var not_end = true;
         function lastAddedLiveFunc() {
             var lastPostLoad = $('#lastPostsLoader');
             $('div#lastPostsLoader').html('<img src="bigLoader.gif"/>');
 //            console.log($("#lastPostLoader").attr('data-index'));
             page_index = page_index+1;
             console.log("inja"+page_index);
+            if(not_end) {
+                $.ajax({
+                    url: '/timeline/' + page_index + '/',
+                    type: "POST",
+                    data: [],
+                    success: function (result) {
 
-            $.ajax({
-                url: '/timeline/' + page_index + '/',
-                type: "POST",
-                data: [],
-                success: function (result) {
-                    if (result != "") {
-                        //console.log('add data..');
+                        if(result == 'End of timeline'){
+                            not_end = false;
+                        }else {
+                            if (result != "") {
+                                //console.log('add data..');
 //                        console.log(result);
-                        $("#center").append(result);
-                        $(document).trigger('ready');
-                        $('#center .rating').rating();
-                    }
+                                $("#center").append(result);
+                                $(document).trigger('ready');
+                                $('#center .rating').rating();
+                            }
+                        }
 
-                    $('div#lastPostsLoader').empty();
+                        $('div#lastPostsLoader').empty();
 //                    $('div#lastPostsLoader').attr('data-index', page_index);
-                    console.log("oonja"+page_index);
+                        console.log("oonja" + page_index);
 
-                }
-            });
+                    }
+                });
+            }
 
 
         };
