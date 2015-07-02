@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'accounts',
     'posts',
     'content',
+    'notifications',
 )
 
 MIDDLEWARE_CLASSES = (

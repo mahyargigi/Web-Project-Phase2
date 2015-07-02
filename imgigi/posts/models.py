@@ -39,5 +39,5 @@ class Like(models.Model):
         return like
 
 
-class Notification(models.Model):
-    pass
+#class Notification(models.Model):
+#    pass
