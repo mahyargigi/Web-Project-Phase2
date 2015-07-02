@@ -1,0 +1,11 @@
+{% load staticfiles %}
+<div class="col-md-3">
+    <aside class="sidebar col-md-12">
+        {% block suggested-films %}
+            {% include 'suggested-films.html' %}
+        {% endblock %}
+        {% block suggested-users %}
+            {% include 'suggested-users.html' %}
+        {% endblock %}
+    </aside>
+</div>

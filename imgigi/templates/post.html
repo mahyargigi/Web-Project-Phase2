@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+<!--{% include "suggested-films.html" %}-->
+{% block title %}post{% endblock %}
+{%block navigationbar %}
+    {% include 'navigation-bar.html' %}
+{% endblock %}
+
+{%block center %}
+    {%load staticfiles %}
+    <div id="center" class="col-md-6">
+            <div class="well " id="post-{{post.id}}">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="{{ post.user.profile_picture.url }}" alt="icon">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading">{{ post.user.display_name }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        starred <a class='pop' data-popover="true" data-html=true
+                                   data-content="<a class='' href='movie-profile.html' target='blank' >
+                                   <a>Before Sunrise</a><hr><span>director:<a>Richard Linklater</a></span><hr>8.1</a>">{{ post.movie.title }}</a>
+                    </div>
+                    </span>
+                    <div class="col-md-3">
+                        <a href="post.html">{{ post.date }}</a>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                        {{ post.description }}
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <input id="movie-rate" class="rating" data-stars="5" data-min="0" data-max="10" data-step="1"
+                       data-show-clear="false" data-readonly="true" data-symbol="&#x2605">
+
+                <div class="card">
+
+                    <div class="card-height-indicator"></div>
+
+                    <div class="card-content">
+
+
+                        <div class="card-image">
+                            <img src="{{post.movie.movie_cover.url}}" class="shadow-z-1" alt="Loading image...">
+
+                            <h3 class="card-image-headline">{{ post.movie.title }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <!--<div class="">-->
+                            <!--<h3>Before Sunrise</h3>-->
+
+                            <!--<div class="small"><span>105 min</span></div>-->
+                            <!--<hr>-->
+                            <!--</div>-->
+
+                            <p>{{ post.movie.description }}</p>
+                        </div>
+
+                        <!--<div class="card-body">-->
+
+                        <!--</div>-->
+
+
+                        <!--<footer class="card-footer">-->
+
+                        <!--</footer>-->
+
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                        <a href="javascript:void(0)"
+                           class="btn btn-primary btn-fab btn-raised glyphicon glyphicon-heart-empty  " id="like-{{post.id}}"></a>
+                        <span class="like-message">
+                            {% for like in post.likes.all %}
+                                {% if  not forloop.last %}
+                                    {{like.user}},
+                                {% else %}
+                                    {{like.user}} liked the post.
+                                {% endif %}
+
+                            {% endfor %}
+                        </span>
+
+                        <ul class="comment-list list-group">
+                            <!--<input type="hidden" class="{{ post.user.id }}" id="hellooooop">-->
+                            <div class="comments">
+                                {% for comment in post.comments.all %}
+                                    <li>
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="{{comment.user.profile_picture.url}}" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">{{ comment.user.display_name }}</h4>
+                                                <p class="list-group-item-text">{{ comment.description }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-separator"></div>
+                                    </li>
+                                {% endfor %}
+                            </div>
+                            <li class="text-button" id='text-button-{{post.id}}'>
+                                <div class="list-group-item">
+                                    <div class="form-group">
+                                        <!--<input class="form-control floating-labe" id="focusedInput" type="text" placeholder="Comment">-->
+                                <textarea class="form-control floating-label input-group-lg post-input" id="focusedInput-{{post.id}}"
+                                          type="text"
+                                          placeholder="Comment"></textarea>
+                                        <!--</textarea>-->
+                                    </div>
+                                    <div id="post-id-{{post.id}}"> <!-- this div class is for passing the psot id -->
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm post-comment" id="post-comment-{{post.id}}">Post
+                                            Comment</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+            </div>
+        </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/post-comment.js' %}"></script>
+    <script src="{% static 'js/like.js' %}"></script>
+{% endblock %}

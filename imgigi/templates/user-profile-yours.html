@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{%block title %}user-profle{% endblock %}
+{%block navigationbar %}
+    {% include 'navigation-bar.html' %}
+{% endblock %}
+{% block user-settings %}
+    <div class="row">
+        <div class="thumbnail col-lg-2 col-lg-offset-1 pull-left">
+            <img src="{{target_user.profile_picture.url}}" class="thumbnail">
+
+            <h2><a><span>{{target_user.user}}</span></a></h2>
+            <h4><a><span class="">@{{target_user.display_name}}</span></a></h4>
+        </div>
+        <!--TODO: pull down this div-->
+        <div class="col-lg-9 pull-down">
+            <div class="col-md-8">
+            </div>
+
+            <div class="col-lg-4">
+                <!--TODO: if my profile -> Edit else if following -> Unfollow else Follow-->
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-default">
+        <div class="navbar-collapsecollapse navbar-responsive-collapse">
+            <div class="col-lg-2"></div>
+            <ul class="nav navbar-nav nav-tabs">
+                <li class="active"><a href="#posts" data-toggle="tab">Posts<span class="badge">{{target_user.posts.all | length}}</span></a></li>
+                <li ><a href="#follower" data-toggle="tab">Followers <span class="badge">{{target_user.followers.all | length}}</span></a></li>
+                <li><a href="#following" data-toggle="tab">Following <span class="badge">{{target_user.follows.all | length}}</span></a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right " style="margin-right: 15px">
+                <!--<a href="javascript:void(0)" class="btn btn-info  follow">Follow</a>-->
+                {% if yours %}
+                    <a href="javascript:void(0)" class="btn btn-primary btn-raised">Edit</a>
+                {% else %}
+                    {% if follows %}
+                        <a href="javascript:void(0)" class="btn btn-success following" identifier="user-{{target_user.id}}">Following</a>
+                    {% else %}
+                        <a href="javascript:void(0)" class="btn btn-info  follow" identifier="user-{{target_user.id}}">Follow</a>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+{% block center %}
+    <div id="center" class="col-lg-6">
+        <div id="myTabcontent" class="tab-content all-users">
+        <div class="tab-pane fade active in" id="posts">
+        {% for post in target_user.posts.all %}
+            <div class="well " id="post-{{post.id}}">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="{{ post.user.profile_picture.url }}" alt="icon">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading">{{ post.user.display_name }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        starred <a class='pop' data-popover="true" data-html=true
+                                   data-content="<a class='' href='movie-profile.html' target='blank' >
+                                   <a>Before Sunrise</a><hr><span>director:<a>Richard Linklater</a></span><hr>8.1</a>">{{ post.movie.title }}</a>
+                    </div>
+                    </span>
+                    <div class="col-md-3">
+                        <a href="post.html">{{ post.date }}</a>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                        {{ post.description }}
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <input id="movie-rate" class="rating" data-stars="5" data-min="0" data-max="10" data-step="1"
+                       data-show-clear="false" data-readonly="true" data-symbol="&#x2605" value="{{post.rate}}">
+
+                <div class="card">
+
+                    <div class="card-height-indicator"></div>
+
+                    <div class="card-content">
+
+
+                        <div class="card-image">
+                            <img src="{{post.movie.movie_cover.url}}" class="shadow-z-1" alt="Loading image...">
+
+                            <h3 class="card-image-headline">{{ post.movie.title }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <!--<div class="">-->
+                            <!--<h3>Before Sunrise</h3>-->
+
+                            <!--<div class="small"><span>105 min</span></div>-->
+                            <!--<hr>-->
+                            <!--</div>-->
+
+                            <p>{{ post.movie.description }}</p>
+                        </div>
+
+                        <!--<div class="card-body">-->
+
+                        <!--</div>-->
+
+
+                        <!--<footer class="card-footer">-->
+
+                        <!--</footer>-->
+
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                        <a href="javascript:void(0)"
+                           class="btn btn-primary btn-fab btn-raised glyphicon glyphicon-heart-empty  " id="like-{{post.id}}"></a>
+                        <span class="like-message">
+                            {% for like in post.likes.all %}
+                                {% if  not forloop.last %}
+                                    {{like.user}},
+                                {% else %}
+                                    {{like.user}} liked the post.
+                                {% endif %}
+
+                            {% endfor %}
+                        </span>
+
+                        <ul class="comment-list list-group">
+                            <!--<input type="hidden" class="{{ post.user.id }}" id="hellooooop">-->
+                            <div class="comments">
+                                {% for comment in post.comments.all %}
+                                    <li>
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="{{comment.user.profile_picture.url}}" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">{{ comment.user.display_name }}</h4>
+                                                <p class="list-group-item-text">{{ comment.description }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-separator"></div>
+                                    </li>
+                                {% endfor %}
+                            </div>
+                            <li class="text-button" id='text-button-{{post.id}}'>
+                                <div class="list-group-item">
+                                    <div class="form-group">
+                                        <!--<input class="form-control floating-labe" id="focusedInput" type="text" placeholder="Comment">-->
+                                <textarea class="form-control floating-label input-group-lg post-input" id="focusedInput-{{post.id}}"
+                                          type="text"
+                                          placeholder="Comment"></textarea>
+                                        <!--</textarea>-->
+                                    </div>
+                                    <div id="post-id-{{post.id}}"> <!-- this div class is for passing the psot id -->
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm post-comment" id="post-comment-{{post.id}}">Post
+                                            Comment</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+            </div>
+        {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="follower">
+            {% for follower in target_user.followers.all %}
+                {% if forloop.counter0|divisibleby:2 %}
+                    <div class="row 2taii">
+                        <div class="user-div col-md-6">
+                            <div class="list-group">
+                                <a href="#">
+                                    <div class="list-group-item">
+                                        <div class="row-picture">
+                                            <img class="circle" src="{{follower.profile_picture.url}}" alt="icon">
+                                        </div>
+                                        <div class="row-content">
+                                            <h4 class="list-group-item-heading">{{follower.display_name}}</h4>
+                                            <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                            {% if follower in request.user.user.follows.all %}
+                                                <a href="javascript:void(0)" class="btn btn-success following" identifier="user-{{follower.id}}">Following</a>
+                                            {% else %}
+                                                <a href="javascript:void(0)" class="btn btn-info follow" identifier="user-{{follower.id}}">FOllow</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <div class="list-group-separator"></div>
+                            </div>
+                        </div>
+                {% else %}
+                        <div class="user-div col-md-6">
+                            <div class="list-group">
+                                <a href="#">
+                                    <div class="list-group-item">
+                                        <div class="row-picture">
+                                            <img class="circle" src="{{follower.profile_picture.url}}" alt="icon">
+                                        </div>
+                                        <div class="row-content">
+                                            <h4 class="list-group-item-heading">{{follower.display_name}}</h4>
+                                            <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                            {% if follower in request.user.user.follows.all %}
+                                                <a href="javascript:void(0)" class="btn btn-success following" identifier="user-{{follower.id}}">Following</a>
+                                            {% else %}
+                                                <a href="javascript:void(0)" class="btn btn-info follow" identifier="user-{{follower.id}}">FOllow</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <div class="list-group-separator"></div>
+                            </div>
+                        </div>
+                {% endif %}
+                {% if forloop.last or forloop.counter|divisibleby:2 %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+              <div class="tab-pane fade" id="following">
+               {% for following in target_user.follows.all %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                        <div class="row 2taii">
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="{{following.profile_picture.url}}" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">{{following.display_name}}</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                {% if following in request.user.user.follows.all %}
+                                                    <a href="javascript:void(0)" class="btn btn-success following" identifier="user-{{following.id}}">Following</a>
+                                                {% else %}
+                                                    <a href="javascript:void(0)" class="btn btn-info follow" identifier="user-{{following.id}}">FOllow</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                    {% else %}
+                            <div class="user-div col-md-6">
+                                <div class="list-group">
+                                    <a href="#">
+                                        <div class="list-group-item">
+                                            <div class="row-picture">
+                                                <img class="circle" src="{{following.profile_picture.url}}" alt="icon">
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">{{following.display_name}}</h4>
+                                                <!--<p class="list-group-item-text">A nostalgic animation!</p>-->
+                                                {% if following in request.user.user.follows.all %}
+                                                    <a href="javascript:void(0)" class="btn btn-success following" identifier="user-{{following.id}}">Following</a>
+                                                {% else %}
+                                                    <a href="javascript:void(0)" class="btn btn-info follow" identifier="user-{{following.id}}">FOllow</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="list-group-separator"></div>
+                                </div>
+                            </div>
+                    {% endif %}
+                    {% if forloop.last or forloop.counter|divisibleby:2 %}
+                        </div>
+                    {% endif %}
+               {% endfor %}
+              </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/post-comment.js' %}"></script>
+    <script src="{% static 'js/like.js' %}"></script>
+{% endblock %}

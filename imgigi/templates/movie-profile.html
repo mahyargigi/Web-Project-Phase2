@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% block title %}Movie-profile {% endblock %}
+{%block navigationbar %}
+    {% include 'navigation-bar.html' %}
+{% endblock %}
+{% block center %}
+
+{% load staticfiles %}
+
+    <div id="center" class="col-md-6">
+
+        <!-- Modal -->
+        <div class="modal" id="rate-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title">Modal title</h4>
+
+                        <div>
+                            <input id="short-movie-rate" type="number" class="rating" data-stars="10"
+                                   data-max="10" data-step="1" data-show-caption="true" data-size="xs"
+                                   data-show-clear="false" data-readonly="false">
+                            <!--TODO: inputi ke miad ghabeliat enter zadan nadare!-->
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input class="form-control floating-label" id="focusedInput" type="text"
+                                   placeholder="Write something about this movie ...">
+                        </div>
+                        <div class="card">
+
+                            <div class="card-height-indicator"></div>
+
+                            <div class="card-content">
+
+
+                                <div class="card-image">
+
+                                    <img src="{{movie.movie_cover.url}}" class="shadow-z-1" alt="Loading image...">
+
+                                    <h3 class="card-image-headline">{{ movie.title }}</h3>
+                                    <p hidden="true" id="hidden-movie-rate">{{movie.rating}}</p>
+                                    <p hidden="true" id="hidden-movie-id">{{movie.id}}</p>
+                                </div>
+                                <div class="card-body">
+                                    <!--<div class="">-->
+                                    <!--<h3>Before Sunrise</h3>-->
+
+                                    <!--<div class="small"><span>105 min</span></div>-->
+                                    <!--<hr>-->
+                                    <!--</div>-->
+
+                                    <p>{{ movie.description }}</p>
+                                </div>
+
+                                <!--<div class="card-body">-->
+
+                                <!--</div>-->
+
+
+                                <!--<footer class="card-footer">-->
+
+                                <!--</footer>-->
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                        </button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-post">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="card">
+            <div class="card-height-indicator"></div>
+            <div class="card-content">
+                <div class="card-image-headline">
+                </div>
+                <div class="row">
+                    <div class="card-image col-lg-6">
+                        <img src="{{ movie.movie_cover.url }}" class="shadow-z-1" alt="Loading image...">
+                    </div>
+                    <div class="col-lg-6">
+                        <h3>{{ movie.title }}</h3>
+
+                        <div class="small"><span>{{ movie.length }}min</span> <span> <a
+                                href="{{ movie.imdb_link }}"> <img src="{% static  'img/imdb-flat.png' %}"
+                                                                                               class="right"
+                                                                                               style="width: 40px;"></a></span>
+                            <span>{{ movie.release_date }}</span></div>
+                        <!--<hr>-->
+                        <div>
+                            <div class=""></div>
+                        </div>
+                        <div>
+                            <input id="movie-rate" type="number" class="rating" data-stars="1"
+                                   data-max="10" data-step="0.1" data-show-caption="true" data-size="xl"
+                                   data-show-clear="false" data-readonly="true"
+                                    >
+
+
+                            <input id="rate-it" type="number" class="rating" data-stars="10"
+                                   data-max="10" data-step="1" data-show-caption="false" data-size="xs"
+                                   data-show-clear="false"
+                                   data-toggle="modal" data-target="#myModal">
+                        </div>
+                        <div class=""><span class="inline">Director:</span>
+                            <a href="/name/nm0000500/?ref_=tt_ov_dr" itemprop="url"><span>
+                                {% for role in roles %}
+                                    {% ifequal role.role 'dir' %}
+                                        {{ role.artist.name }}
+                                    {% endifequal %}
+                                {% endfor %}</span></a>
+                        </div>
+                        <p>{{ movie.description }}</p>
+                    </div>
+
+                </div>
+                <div class="well">
+                    <table class="table table-responsive">
+                        <thead>Actors:</thead>
+                        {% for role in roles %}
+                            {% ifequal role.role 'act' %}
+                                <tr class="">
+                                    <td></td>
+                                    <td>{{ role.artist.name }}</td>
+                                    <td>{{ role.description }}</td>
+                                </tr>
+                            {% endifequal %}
+                        {% endfor %}
+                    </table>
+                    <table class="table">
+                        <thead>other:</thead>
+                        {% for role in roles %}
+                            {% ifequal role.role 'dir' %}
+                                <tr class="">
+                                    <td></td>
+                                    <td>{{ role.artist.name }}</td>
+                                    <td>{{ role.role }}</td>
+                                </tr>
+                            {% endifequal %}
+                        {% endfor %}
+                    </table>
+                    <a>see more</a>
+                </div>
+            </div>
+            <div class="card-body">
+
+
+                <!--<footer class="card-footer">-->
+
+                <!--</footer>-->
+
+
+            </div>
+
+        </div>
+        </div>
+    </div>
+{% endblock %}
+{% block right %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+{% block js %}
+    <script>
+    $(document).ready(function () {
+        // This command is used to initialize some elements and make them work properly
+        $.material.init();
+        var movie_rate = $('#hidden-movie-rate').html();
+//        var user_rate = $('rate-it').val();
+//        $('.rating-stars').on('click',function(){
+//            var user_rate = $('.rating-stars').innerHTML;
+//            console.log("user rated:"+user_rate);
+//        });
+        $('#movie-rate').rating('update', movie_rate);
+        $('#rate-it').on('rating.change', function (event, value, caption) {
+
+            console.log(value);
+//            console.log(caption);
+            $('#short-movie-rate').rating('update', value);
+            $("#rate-modal").modal("show");
+        });
+        $('#submit-post').on('click',function(){
+           user_rate = $('#short-movie-rate').val();
+           user_description = $('#focusedInput').val();
+           movie_id = $('#hidden-movie-id').html();
+            console.log(user_description);
+            $.ajax({
+               url: '/add-post/',
+               type: 'POST',
+               data:{'user_rate':user_rate , 'user_description':user_description , 'movie_id':movie_id},
+                success:function(result){
+                    $('#movie-rate').rating('update',result);
+                }
+            });
+        });
+
+    });
+    </script>
+{% endblock %}

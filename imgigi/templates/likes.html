@@ -1,0 +1,7 @@
+{% for like in likes %}
+    {% if  not forloop.last %}
+        {{like.user}},
+    {% else %}
+        {{like.user}} liked the post.
+    {% endif %}
+{% endfor %}
