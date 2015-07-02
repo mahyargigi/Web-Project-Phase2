@@ -3,6 +3,7 @@ from .models import UserProfile
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from notifications import notify
+from content.views import suggested_users , suggested_films
 # Create your views here.
 
 def user_profile(request , user_id):
@@ -12,7 +13,9 @@ def user_profile(request , user_id):
         yours = True
     elif user in request.user.user.follows.all():
         follows = True
-    return render(request , 'user-profile-yours.html' , {'target_user':user , 'yours':yours , 'follows':follows})
+    suggestedFilms = suggested_films(request)
+    suggestedUsers = suggested_users(request)
+    return render(request , 'user-profile-yours.html' , {'target_user':user , 'yours':yours , 'follows':follows ,'suggested_movies':suggestedFilms , 'suggested_users':suggestedUsers})
 
 @csrf_exempt
 def follow_unfollow(request):

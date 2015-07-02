@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^search/', search),
     url(r'^test/', suggested_films),
     url(r'^$', timeline),
+    url(r'^timeline/(?P<page_index>\d+)/$', timeline),
     url(r'^post-comment', post_comment),
     url(r'^like', like),
     url(r'^follow-unfollow', follow_unfollow),

@@ -13,9 +13,9 @@ def movie_profile(request, movie_id):
     #try :
     movie = Movie.objects.get(id=movie_id)
     role = Role.objects.filter(movie=movie)
-    films = suggested_films(request)
-    users = suggested_users(request)
-    return render(request,'movie-profile.html',{'movie':movie , 'roles':role , 'suggested_movies':films , 'suggested_users':users})
+    suggestedFilms = suggested_films(request)
+    suggestedUsers = suggested_users(request)
+    return render(request,'movie-profile.html',{'movie':movie , 'roles':role , 'suggested_movies':suggestedFilms , 'suggested_users':suggestedUsers})
 
     #except:
     #    return HttpResponse('not found')
@@ -50,7 +50,9 @@ def search(request):
         #print(query)
         movies = Movie.objects.filter(title__contains=query)
         users = UserProfile.objects.filter(display_name__contains=query)
-        response = render(request, 'search-result.html',{'movies':movies , 'users':users} )
+        #suggestFilms = suggested_films(request)
+        #suggestedUsers = suggested_users(request)
+        response = render(request, 'search-result.html',{'movies':movies , 'users':users } )
         return HttpResponse(response)
     elif request.method =='GET':
         print("get")

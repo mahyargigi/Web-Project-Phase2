@@ -13,9 +13,11 @@ class Post(models.Model):
     rate = models.IntegerField()
     description = models.CharField(max_length=10000)
     date = models.DateTimeField(default=timezone.now())
+
     def __str__(self):
         name = str(self.movie) + "--" + str(self.user)
         return name
+
 
 
 class Comment(models.Model):
