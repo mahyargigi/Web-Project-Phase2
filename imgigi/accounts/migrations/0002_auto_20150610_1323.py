@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='userprofile',
             name='follows',
-            field=models.ManyToManyField(related_name='followers', blank=True, to='accounts.UserProfile'),
+            field=models.ManyToManyField(related_name='followers', null=True, to='accounts.UserProfile', blank=True),
         ),
     ]

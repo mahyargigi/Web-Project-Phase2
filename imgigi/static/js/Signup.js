@@ -8,25 +8,23 @@ $(document).ready(function(){
     var matchPasswords = false ;
     var validDates = false ;
 
+    var username = $("#id_username");
+    var password = $("#id_password");
+    var password_confirm = $("#id_password_confirm");
+    var display_name = $("#id_display_name");
+    var birthday = $("#id_birthday");
+    var mail = $("#id_email");
+    var captcha = $("#id_captcha_1");
+
     hideLabels();
-    console.log("loaded!");
+
     var checkAllFilled = function() {
-//        console.log("caf");
+        console.log("all"+allfield+"pass"+longPass+"date"+validDates+"mail"+validEmail+"match"+matchPasswords);
+
         if(longPass && allfield && validEmail && matchPasswords && validDates){
             $('.submit').removeClass('disabled');
-            console.log("longpass="+longPass);
-            console.log("allfield="+allfield);
-            console.log("valideEmail="+validEmail);
-            console.log("matchpasswords="+matchPasswords);
-            console.log("validDates="+validDates);
-
         }
         else{
-            console.log("longpass="+longPass);
-            console.log("allfield="+allfield);
-            console.log("valideEmail="+validEmail);
-            console.log("matchpasswords="+matchPasswords);
-            console.log("validDates="+validDates);
             $('.submit').addClass('disabled');
         }
     };
@@ -41,92 +39,70 @@ $(document).ready(function(){
         checkAllFilled();
     }
 
-
-//    $('input').keyup(function(){
-//        console.log('keyup');
-//        if(isFilled()){
-//            allfield = true;
-//        }
-//        else{
-//            allfield = false;
-//        }
-//        checkAllFilled();
-//    });
-
-//    $('select').on('change', function(){ //keyup bood avalesh
-//        if(($('.birthMonth').val()!= 0) && ($('.birthDate').val()!= 0) && ($('.birthYear').val()!= 0)){
-//            validDates = true ;
-//        }
-//        else{
-//            validDates = false;
-//        }
-//        console.log('change');
-//        checkAllFilled();
-//    });
-    $('#inputDate').on('change' ,
+    birthday.on('change' ,
        function(){
-
-           if(isValidDate($('#inputDate').val())){
-                $('#inputDate').parent().parent().addClass('has-success');
-                $('#inputDate').parent().parent().removeClass('has-error');
+           if(isValidDate($(this).val())){
+                (birthday).parent().parent().addClass('has-success');
+                (birthday).parent().parent().removeClass('has-error');
                 validDates = true ;
            }
             else{
-               $('#inputDate').parent().parent().addClass('has-error');
-               $('#inputDate').parent().parent().removeClass('has-success');
+               (birthday).parent().parent().addClass('has-error');
+               (birthday).parent().parent().removeClass('has-success');
                validDates = false ;
            }
            test();
     });
-    $('#inputUsername').keyup(function(){
-       if($('#inputUsername').val().length > 0){
-           $('#inputUsername').parent().parent().addClass('has-success');
-           $('#inputUsername').parent().parent().removeClass('has-error');
+    username.keyup(function(){
+        //console.log(username.val());
+       if(username.val().length > 0){
+           username.parent().parent().addClass('has-success');
+           username.parent().parent().removeClass('has-error');
        }
         else{
-           $('#inputUsername').parent().parent().addClass('has-error');
-           $('#inputUsername').parent().parent().removeClass('has-success');
+           username.parent().parent().addClass('has-error');
+           username.parent().parent().removeClass('has-success');
        }
         test();
     });
-    $('#inputDisplayname').keyup(function(){
-       if($('#inputDisplayname').val().length > 0){
-           $('#inputDisplayname').parent().parent().addClass('has-success');
-           $('#inputDisplayname').parent().parent().removeClass('has-error');
+    display_name.keyup(function(){
+       if($(this).val().length > 0){
+           $(this).parent().parent().addClass('has-success');
+           $(this).parent().parent().removeClass('has-error');
        }
         else{
-           $('#inputDisplayname').parent().parent().addClass('has-error');
-           $('#inputDisplayname').parent().parent().removeClass('has-success');
+           $(this).parent().parent().addClass('has-error');
+           $(this).parent().parent().removeClass('has-success');
        }
         test();
     });
-    $('#inputPassword').keyup(function(){
-        if(($('#inputPassword').val().length < 6)&& ($('#inputPassword').val().length > 0)){
-            $('#inputPassword').parent().parent().addClass('has-error');
-            $('#inputPassword').parent().parent().removeClass('has-success');
+    password.keyup(function(){
+        if(($(this).val().length < 6)&& ($(this).val().length > 0)){
+            $(this).parent().parent().addClass('has-error');
+            $(this).parent().parent().removeClass('has-success');
             longPass =  false
         }
-        else if(($('#inputPassword').val().length >= 6)){
-            $('#inputPassword').parent().parent().addClass('has-success');
-            $('#inputPassword').parent().parent().removeClass('has-error');
+        else if((password.val().length >= 6)){
+            $(this).parent().parent().addClass('has-success');
+            $(this).parent().parent().removeClass('has-error');
             longPass = true ;
         }
         else{
-            $('#inputPassword').parent().parent().removeClass('has-success');
-            $('#inputPassword').parent().parent().removeClass('has-error');
+            $(this).parent().parent().removeClass('has-success');
+            $(this).parent().parent().removeClass('has-error');
             longPass = false ;
         }
 
-        if(($('#inputPassword').val().length > 0) && ($('#ConfirmPassword').val().length > 0) && ($('#inputPassword').val() !== $('#ConfirmPassword').val())){
+        if((password.val().length > 0) && (password_confirm.val().length > 0) && (password.val() !== password_confirm.val())){
 //            $('#not-match').show();
-            $('#ConfirmPassword').parent().parent().addClass('has-error');
-            $('#ConfirmPassword').parent().parent().removeClass('has-success');
+            password_confirm.parent().parent().addClass('has-error');
+            password_confirm.parent().parent().removeClass('has-success');
 
             matchPasswords = false ;
         }
-        else if(($('#inputPassword').val().length > 0) && ($('#ConfirmPassword').val().length > 0) && ($('#inputPassword').val() === $('#ConfirmPassword').val())){
-            $('#ConfirmPassword').parent().parent().removeClass('has-error');
-            $('#ConfirmPassword').parent().parent().addClass('has-success');
+        else if((password.val().length > 0) && (password_confirm.val().length > 0) && (password.val() === password_confirm.val())){
+            password_confirm.parent().parent().removeClass('has-error');
+            password_confirm.parent().parent().addClass('has-success');
 //            $('#not-match').hide();
             matchPasswords = true ;
         }
@@ -134,58 +110,69 @@ $(document).ready(function(){
         test();
 
     });
-    $('#ConfirmPassword').keyup(function(){
+    password_confirm.keyup(function(){
         console.log('sec');
-        if(($('#inputPassword').val().length > 0) && ($('#ConfirmPassword').val().length > 0) && ($('#inputPassword').val() !== $('#ConfirmPassword').val())){
-            $('#ConfirmPassword').parent().parent().addClass('has-error');
-            $('#ConfirmPassword').parent().parent().removeClass('has-success');
+        if((password.val().length > 0) && (password_confirm.val().length > 0) && (password.val() !== password_confirm.val())){
+            password_confirm.parent().parent().addClass('has-error');
+            password_confirm.parent().parent().removeClass('has-success');
 //            $('#not-match').show();
             matchPasswords = false ;
         }
-        else if(($('#ConfirmPassword').val().length ==0)){
-            $('#ConfirmPassword').parent().parent().removeClass('has-error');
-            $('#ConfirmPassword').parent().parent().removeClass('has-success');
+        else if((password_confirm.val().length ==0)){
+            password_confirm.parent().parent().removeClass('has-error');
+            password_confirm.parent().parent().removeClass('has-success');
             matchPasswords = false ;
         }
         else{
-            $('#ConfirmPassword').parent().parent().removeClass('has-error');
-            $('#ConfirmPassword').parent().parent().addClass('has-success');
+            password_confirm.parent().parent().removeClass('has-error');
+            password_confirm.parent().parent().addClass('has-success');
             matchPasswords = true ;
         }
         test();
     });
-    $('#inputEmail').keyup(function(){
-        if((isValidEmailAddress($('#inputEmail').val()))){
-            $('#inputEmail').parent().parent().addClass('has-success');
-            $('#inputEmail').parent().parent().removeClass('has-error');
+    mail.keyup(function(){
+        if((isValidEmailAddress(mail.val()))){
+            mail.parent().parent().addClass('has-success');
+            mail.parent().parent().removeClass('has-error');
             validEmail = true ;
         }
-        else if(($('#inputEmail').val().length>0)&&(!isValidEmailAddress($('#inputEmail').val()))){
-            $('#inputEmail').parent().parent().addClass('has-error');
-            $('#inputEmail').parent().parent().removeClass('has-success');
+        else if((mail.val().length>0)&&(!isValidEmailAddress(mail.val()))){
+            mail.parent().parent().addClass('has-error');
+            mail.parent().parent().removeClass('has-success');
             validEmail = false;
         }
         else{
-            $('#inputEmail').parent().parent().removeClass('has-success');
-            $('#inputEmail').parent().parent().removeClass('has-error');
+            mail.parent().parent().removeClass('has-success');
+            mail.parent().parent().removeClass('has-error');
         }
         test();
     });
-    $('#inputDate').bootstrapMaterialDatePicker({ weekStart : 0 ,time: false } );
+    birthday.bootstrapMaterialDatePicker({ weekStart : 0 ,time: false } );
     var minDate = '1910-01-01' ;
     var maxDate = '2014-01-01' ;
 //    $('#inputDate').bootstrapMaterialDatePicker('setMaxDate' , maxDate);
-    $('#inputDate').bootstrapMaterialDatePicker('setMinDate' , minDate);
+    birthday.bootstrapMaterialDatePicker('setMinDate' , minDate);
+
+    captcha.on('change' ,
+       function(){
+
+           test();
+    });
 
     $('.submit').on('click',function(){
-       $('#success-modal').show();
+
+       //$('#success-modal').show();
     });
+
+    //$('#signup_form').on
+
  });
 function isValidEmailAddress(emailAddress) {
         var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
         return pattern.test(emailAddress);
 };
 function isFilled(){
+    console.log("in isFelled!");
             var filled = true ;
             $('.form-control').each(function(){
                     if($(this).val() === ""){
@@ -193,6 +180,7 @@ function isFilled(){
                         console.log($(this).id);
                     };
                 });
+    console.log(filled);
     return filled;
 };
 function hideLabels(){

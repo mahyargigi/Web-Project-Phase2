@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserProfile',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('display_name', models.CharField(max_length=100)),
                 ('birthday', models.DateField()),
                 ('profile_picture', models.ImageField(upload_to='')),

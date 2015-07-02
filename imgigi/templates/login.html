@@ -1,0 +1,89 @@
+<html>
+<head>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/roboto.min.css" rel="stylesheet">
+    <link href="/static/css/material.min.css" rel="stylesheet">
+    <link href="/static/css/ripples.min.css" rel="stylesheet">
+    <link href="/static/css/login.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+<!--site starts-->
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <header class="page-header">
+        <h2 class="text-center">Welcome to IMGIGI</h2>
+        </header>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<!--<div class="row">-->
+    <!--had the class container-->
+    <div id="left" class="col-md-3"></div>
+    <div id="center" class="col-md-6">
+        <div class="well bs-component">
+            <form class="form-horizontal" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Login</legend>
+
+                    <div class="form-group">
+                        <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+
+                        <div class="col-lg-10">
+{#                            <input type="text" class="form-control floating-label" id="inputUsername" placeholder="Username">#}
+                            {{ form.username }}
+                            {{ form.username.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+
+                        <div class="col-lg-10">
+{#                            <input type="password" class="form-control floating-label" id="inputPassword" placeholder="Password">#}
+                            {{ form.password }}
+                            {{ form.password.errors }}
+
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                            <!--<div class="col-lg-10 col-lg-offset-2">-->
+
+                            <!--</div>-->
+                        </div>
+                    </div>
+{#                    TODO: add error message to template.#}
+                    <p>{{ form.message.as_p }}</p>
+                    <div class="form-group">
+
+                        <br>
+                        <a href="forgot-password.html" class="btn btn-link">Forgot password</a>
+                        <a href="Signup.html" class="btn btn-link">Signup</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div id="right" class="col-md-3"></div>
+<!--</div>-->
+<!--site ends!-->
+<script src="/static/js/jquery-1.11.2.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+<script src="/static/js/ripples.min.js"></script>
+<script src="/static/js/material.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // This command is used to initialize some elements and make them work properly
+        $.material.init();
+    });
+
+
+</script>
+</body>
+</html>

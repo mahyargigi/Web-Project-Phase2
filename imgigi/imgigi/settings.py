@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'accounts',
     'posts',
     'content',
+    'captcha',
     'notifications',
 )
 
@@ -73,19 +74,19 @@ ROOT_URLCONF = 'imgigi.urls'
 #]
 
 TEMPLATES = [
-     {
-         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-         'APP_DIRS': True,
-         'OPTIONS': {
-         'context_processors': [
-         'django.template.context_processors.debug',
-         'django.template.context_processors.request',
-         'django.contrib.auth.context_processors.auth',
-         'django.contrib.messages.context_processors.messages',
-         ],
-         },
-     },
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
 ]
 
 WSGI_APPLICATION = 'imgigi.wsgi.application'
@@ -122,6 +123,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 #STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
+LOGIN_URL = '/login/'
 
 #STATICFILES_DIRS = (
 #os.path.join(BASE_DIR, "static"),

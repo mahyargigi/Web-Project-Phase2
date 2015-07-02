@@ -8,10 +8,12 @@ from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 from notifications import notify
 import django
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from content.views import suggested_users, suggested_films
 
 
+@login_required
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     #comments = post.comments
@@ -21,6 +23,8 @@ def post(request, post_id):
     return render(request, 'post.html',
                   {'post': post, 'suggested_movies': suggestedFilms, 'suggested_users': suggestedUsers})
 
+
+@login_required
 @csrf_exempt
 def timeline(request, page_index=0):
     ppp = 2 #post per page!
@@ -50,6 +54,7 @@ def timeline(request, page_index=0):
                       {'posts': last_posts})
 
 
+@login_required
 @csrf_exempt
 def post_comment(request):
     if request.method == 'POST':
@@ -73,6 +78,7 @@ def post_comment(request):
         #return HttpResponse(json.dump(comment_list), mimetype="application/json")
 
 
+@login_required
 @csrf_exempt
 def like(request):
     if request.method == 'POST':
@@ -90,6 +96,7 @@ def like(request):
     pass
 
 
+@login_required
 @csrf_exempt
 def red_notifications(request):
     user = request.user
@@ -97,6 +104,7 @@ def red_notifications(request):
     return HttpResponse("success")
 
 
+@login_required
 @csrf_exempt
 def add_post(request):
     if request.method == "POST":

@@ -1,0 +1,164 @@
+<!--<!DOCTYPE html>-->
+{% load staticfiles %}
+<html>
+<head>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/roboto.min.css" rel="stylesheet">
+    <link href="/static/css/ripples.min.css" rel="stylesheet">
+    <link href="/static/css/material.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-material-datepicker.css" rel="stylesheet">
+    <!--<link href="css/signup.css" rel="stylesheet">-->
+    <title>Edit Profile</title>
+
+</head>
+<body>
+<!--Site starts-->
+<div class="row">
+    <div class="col-md-12">
+        <header class="page-header ">
+            <di class="col-md-1"></di>
+            <div class="col-md-10">
+                <h2 class="text-center">Edit Profile</h2>
+            </div>
+            <div class="col-md-1">
+                <a href="javascript:history.back()" class="btn btn-link " id="sign-in">Back</a>
+                <a href="/logout/" class="btn btn-link " id="sign-in">Logout</a>
+                <!--TODO: header has problem-->
+            </div>
+        </header>
+    </div>
+</div>
+<div class="row">
+    <div id="left" class="col-md-3"></div>
+    <div id="center" class="col-md-6">
+        <div class="modal" id="success-modal">
+            <div class="modal-dialog">
+                <!--<div class="card">-->
+                <div class="modal-content">
+                    <!--<div class="well">-->
+                    <div class="alert alert-dismissable alert-success">
+                        <!--<button type="button" class="close" data-dismiss="moda">×</button>-->
+                        <strong>Well done!<br>The Activation link is sent to your email address.Please check your inbox
+                            and try to login
+                            <br>
+                        </strong>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                                onclick="window.open('login.html','_self')">Go to login
+                        </button>
+                    </div>
+                </div>
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="well bs-component">
+            <form class="form-horizontal" id="signup_form" enctype="multipart/form-data" action="/edit-profile/" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Profile</legend>
+                    <div class="form-group">
+                        <label for="id_username" class="col-lg-2 control-label ">Username</label>
+                        <div class="col-lg-10 controls">
+                            {{ form1.username }}
+                            {{ form1.username.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_display-name" class="col-lg-2 control-label">Displayname</label>
+
+                        <div class="col-lg-10">
+{#                            <input type="text" class="form-control" id="inputDisplayname" placeholder="Displayname">#}
+                            {{ form2.display_name }}
+                            {{ form2.display_name.errors }}
+                        </div>
+                    </div>
+{#                    <div class="form-group">#}
+{#                        <label for="id_password" class="col-lg-2 control-label">Password</label>#}
+{##}
+{#                        <div class="col-lg-10">#}
+{#                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">#}
+{#                            {{ form1.password }}#}
+{#                            {{ form1.password.errors }}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        <label for="inputPassword" class="col-lg-2 control-label">Confirm Password</label>#}
+{##}
+{#                        <div class="col-lg-10">#}
+{#                            <input type="password" class="form-control" id="id_confirm-password"#}
+{#                                   placeholder="Confirm Password">#}
+{#                            {{ form1.password_confirm }}#}
+{#                            {{ form1.password_confirm.errors }}#}
+{#                        </div>#}
+{#                    </div>#}
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-2 control-label">EmailAddress</label>
+
+                        <div class="col-lg-10">
+                            {{ form1.email }}
+                            {{ form1.email.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile_picture" class="col-lg-2 control-label">Profile Picture</label>
+
+                        <div class="col-lg-10">
+{#                            <input type="email" class="form-control" id="id_email" placeholder="EmailAddress">#}
+                            {{ form2.profile_picture }}
+                            {{ form2.profile_picture.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Birth Date</label>
+
+                        <div class="col-lg-10">
+{#                            <input type="text" class="form-control" id="id_birthday" placeholder="BirthDate">#}
+                            {{ form2.birthday }}
+                            {{ form2.birthday.errors }}
+                            <input type="submit" class="btn btn-primary btn-block submit" value="submit">
+                            <a href="/change-password/" class="btn btn-link " id="sign-in">Change Password</a>
+                        </div>
+                        <!--TODO: disable and enable it with jquery checkings! -->
+                        <!--TODO: dropdownha kenare ham nabashan -->
+                    </div>
+                </fieldset>
+            </form>
+
+{#            <form id="signup_form" enctype="multipart/form-data" class="green-borders" action="/signup/" method="post"#}
+{#                  style="direction: ltr">#}
+{#                {{ form1.as_p }}#}
+{#                {% csrf_token %}#}
+{##}
+{#                    <div class="controls">#}
+{#                        {{ form1.last_name }}#}
+{#                    </div>#}
+{#                    <div class="controls">#}
+{#                        {{ form1.password }}#}
+{#                    </div>#}
+{#                    <input class="form-control" >#}
+{##}
+{##}
+{#                <input type="submit" value="Submit">#}
+{##}
+{#            </form>#}
+        </div>
+    </div>
+    <div id="right" class="col-md-3"></div>
+</div>
+<!--Site ends-->
+<script src="/static/js/jquery-1.11.2.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/ripples.min.js"></script>
+<script src="/static/js/material.min.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<script src="/static/js/bootstrap-mterial-datepicker.js"></script>
+{#<script src="/static/js/Signup.js"></script>#}
+<script>
+    $(document).ready(function () {
+        // This command is used to initialize some elements and make them work properly
+        $.material.init();
+
+    });
+</script>
+</body>
+</html>

@@ -3,23 +3,21 @@ from django.http import HttpResponse
 from content.models import Artist, Movie, Role
 from accounts.models import UserProfile
 from django.views.decorators.csrf import csrf_exempt
-from random import randint
+from django.contrib.auth.decorators import login_required
 import random
 # Create your views here.
 
 
+@login_required
 def movie_profile(request, movie_id):
-
-    #try :
     movie = Movie.objects.get(id=movie_id)
     role = Role.objects.filter(movie=movie)
     suggestedFilms = suggested_films(request)
     suggestedUsers = suggested_users(request)
     return render(request,'movie-profile.html',{'movie':movie , 'roles':role , 'suggested_movies':suggestedFilms , 'suggested_users':suggestedUsers})
 
-    #except:
-    #    return HttpResponse('not found')
 
+@login_required
 def suggested_films(request):
     movie_list = random.sample(range(0,Movie.objects.count()),2)
     movies = []
@@ -28,6 +26,8 @@ def suggested_films(request):
     #return render(request , 'suggested-films.html' , {'movies':movies})
     return movies
 
+
+@login_required
 def suggested_users(request):
     followings = request.user.user.follows.all().values('id')
     print(followings)
@@ -41,6 +41,8 @@ def suggested_users(request):
         users.append(not_followed_users[0])
     return users
 
+
+@login_required
 @csrf_exempt
 def search(request):
     if request.method == 'POST':
