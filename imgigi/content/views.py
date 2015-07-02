@@ -19,10 +19,16 @@ def movie_profile(request, movie_id):
 
 @login_required
 def suggested_films(request):
-    movie_list = random.sample(range(0,Movie.objects.count()),2)
+    count = Movie.objects.count()
     movies = []
-    movies.append(Movie.objects.all()[movie_list[0]])
-    movies.append(Movie.objects.all()[movie_list[1]])
+    if count >= 2 :
+        movie_list = random.sample(range(0,Movie.objects.count()),2)
+        movies = []
+        movies.append(Movie.objects.all()[movie_list[0]])
+        movies.append(Movie.objects.all()[movie_list[1]])
+    elif count == 1 :
+        movies.append(Movie.objects.all()[0])
+
     #return render(request , 'suggested-films.html' , {'movies':movies})
     return movies
 
@@ -30,7 +36,7 @@ def suggested_films(request):
 @login_required
 def suggested_users(request):
     followings = request.user.user.follows.all().values('id')
-    print(followings)
+    #print(followings)
     not_followed_users = UserProfile.objects.exclude(id__in=followings)
     users = []
     if not_followed_users.count() >= 2:

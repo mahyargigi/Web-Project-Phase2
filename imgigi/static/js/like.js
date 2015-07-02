@@ -14,6 +14,7 @@ $(document).ready(function(){
         data : data,
         success:function(result){
     //            console.log(result);
+            console.log("hoora");
             console.log('it is : '+ $($button).next("span").html());
         $($button).next("span").html(result);
 

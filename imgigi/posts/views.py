@@ -62,13 +62,13 @@ def post_comment(request):
         post_id = request.POST.get('post_id')
         post = Post.objects.get(id=post_id)
         Comment(user=request.user.user, post=post, description=comment, date=django.utils.timezone.now()).save()
-        notify.send(request.user, recipient=post.user.user,
+        notify.send(request.user.user, recipient=post.user.user,
                     verb=str(request.user) + " commented on your post") #notification baraye sahebe user
         user_id_vals = Comment.objects.filter(post_id=post.id).values('user')
         recipients = User.objects.filter(user__in=user_id_vals).exclude(user__in=[post.user, request.user.user])
         print(recipients)
         for rec in recipients:
-            notify.send(request.user, recipient=rec, verb="commented on " + str(post.user.display_name) + "'s post")
+            notify.send(request.user.user, recipient=rec, verb="commented on " + str(post.user.display_name) + "'s post")
 
         comment_list = Comment.objects.filter(post=Post.objects.get(id=post_id))
         #return HttpResponse('')
@@ -89,7 +89,7 @@ def like(request):
             like.delete()
         else:
             Like(user=request.user.user, post=post, date=django.utils.timezone.now()).save()
-            notify.send(request.user, recipient=post.user.user, verb=str(request.user) + " liked your post")
+            notify.send(request.user.user, recipient=post.user.user, verb=str(request.user) + " liked your post")
         likes = Like.objects.filter(post=post)
         response = render(request, 'likes.html', {'likes': likes})
         return HttpResponse(response)

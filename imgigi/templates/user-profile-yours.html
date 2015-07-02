@@ -72,7 +72,7 @@
                     </div>
                     </span>
                     <div class="col-md-3">
-                        <a href="post.html">{{ post.date }}</a>
+                        <a href="posts/{{post.id}}">{{ post.date }}</a>
 
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                     <div class="row 2taii">
                         <div class="user-div col-md-6">
                             <div class="list-group">
-                                <a href="#">
+                                <a href="users/{{follower.id}}">
                                     <div class="list-group-item">
                                         <div class="row-picture">
                                             <img class="circle" src="{{follower.profile_picture.url}}" alt="icon">
@@ -213,7 +213,7 @@
                 {% else %}
                         <div class="user-div col-md-6">
                             <div class="list-group">
-                                <a href="#">
+                                <a href="users/{{follower.id}}">
                                     <div class="list-group-item">
                                         <div class="row-picture">
                                             <img class="circle" src="{{follower.profile_picture.url}}" alt="icon">
@@ -245,7 +245,7 @@
                         <div class="row 2taii">
                             <div class="user-div col-md-6">
                                 <div class="list-group">
-                                    <a href="#">
+                                    <a href="users/{{following.id}}">
                                         <div class="list-group-item">
                                             <div class="row-picture">
                                                 <img class="circle" src="{{following.profile_picture.url}}" alt="icon">
@@ -268,7 +268,7 @@
                     {% else %}
                             <div class="user-div col-md-6">
                                 <div class="list-group">
-                                    <a href="#">
+                                    <a href=users/{{following.id}}">
                                         <div class="list-group-item">
                                             <div class="row-picture">
                                                 <img class="circle" src="{{following.profile_picture.url}}" alt="icon">

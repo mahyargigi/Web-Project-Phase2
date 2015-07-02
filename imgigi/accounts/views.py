@@ -42,7 +42,7 @@ def follow_unfollow(request):
     if action == "follow":
         if not object_user in subject_user.follows.all():
             subject_user.follows.add(object_user)
-            notify.send(request.user, recipient=object_user.user , verb=str(request.user)+" followed you")
+            notify.send(request.user.user, recipient=object_user.user , verb=str(request.user)+" followed you")
     elif action == "unfollow":
         if object_user in subject_user.follows.all():
             subject_user.follows.remove(object_user)

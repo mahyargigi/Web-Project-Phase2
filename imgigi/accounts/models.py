@@ -13,4 +13,4 @@ class UserProfile(models.Model):
     follows = models.ManyToManyField('self', related_name='followers', symmetrical=False, null=True, blank=True)
 
     def __str__(self):
-        return self.user.username + " " + self.display_name
+        return self.display_name

@@ -6,7 +6,7 @@
             <div id="users-search" class="tab-pane fade in active">
                 <ul>
                     {% for user in users %}
-                        <a href="#">
+                        <a href="/users/{{user.id}}">
                             <li>
                                 <div class="list-group">
                                     <div class="list-group-item">
@@ -33,7 +33,7 @@
             <div id="movies-search" class="tab-pane fade">
                 <ul style="text-align: left">
                     {% for movie in movies %}
-                        <a href="#">
+                        <a href="/movies/{{movie.id}}">
                             <li>
                                 <div class="list-group">
                                     <div class="list-group-item">

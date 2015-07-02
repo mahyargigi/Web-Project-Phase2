@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="list-group">
-                            <div class="list-group-item">
+                            <div class="list-group-item" >
                                 <div class="row-picture">
                                     <img class="circle" src="{{ post.user.profile_picture.url }}" alt="icon">
                                 </div>
@@ -23,13 +23,13 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        starred <a class='pop' data-popover="true" data-html=true
+                        starred <a href="movies/{{post.movie.id}}" class='pop' data-popover="true" data-html=true
                                    data-content="<a class='' href='movie-profile.html' target='blank' >
                                    <a>Before Sunrise</a><hr><span>director:<a>Richard Linklater</a></span><hr>8.1</a>">{{ post.movie.title }}</a>
                     </div>
                     </span>
                     <div class="col-md-3">
-                        <a href="post.html">{{ post.date }}</a>
+                        <a href="posts/{{post.id}}">{{ post.date }}</a>
 
                     </div>
                 </div>

@@ -1,5 +1,5 @@
-{% load notifications_tags %}
 {% load staticfiles %}
+{% load notifications_tags %}
 {% notifications_unread as not_count %}
 <div class="row container" style="margin-bottom: 70px">
     <!--TODO: aya row container mikhahad ya na?notificationha kharabash nemikonad?-->
@@ -18,12 +18,12 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="notification"><span
                                     class="glyphicon glyphicon-globe"></span><span class="badge" id="notification-count">{{ not_count }}</span></a>
                             <ul class="dropdown-menu">
-                                    {% for notification in request.user.notifications.read|slice:":10" %}
+                                    {% for notification in request.user.notifications.unread|slice:":10" %}
                                             <li>
-                                                <a href="#"><img class="circle" src="{{notification.actor.user
-                                                .profile_picture.url}}" alt="icon"
+                                                <a href="#"><img class="circle" src="{{notification.actor.profile_picture.url}}" alt="icon"
                                                                  style="height: 50px ; width: 50px">{{notification.verb}}</a>
                                                 <hr>
+
                                             </li>
                                     {% endfor %}
                             </ul>
